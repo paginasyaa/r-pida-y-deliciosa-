@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comida Rápida Casera 🍔🔥</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Botón flotante WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #FF4444, #CC0000);
+            color: white;
+            padding: 18px 40px;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 30px rgba(255, 68, 68, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 68, 68, 0.6);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Menú */
+        .menu {
+            padding: 80px 20px;
+            background: #fff;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            color: #333;
+            margin-bottom: 60px;
+            font-weight: 700;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid #F7931E;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B35, #F7931E);
+            transition: left 0.3s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 0;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .menu-item i {
+            font-size: 3rem;
+            color: #F7931E;
+            margin-bottom: 20px;
+        }
+
+        .menu-item h3 {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .menu-item p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FF6B35;
+        }
+
+        /* Beneficios */
+        .benefits {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .benefit-item i {
+            font-size: 3.5rem;
+            color: #F7931E;
+            margin-bottom: 20px;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 80px 20px 60px;
+            }
+            
+            .menu, .benefits {
+                padding: 60px 20px;
+            }
+            
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 26px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-item, .benefit-item {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Botón WhatsApp flotante -->
+    <a href="https://wa.me/5491123456789?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20🍔🔥" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🍔 Comida casera rápida y deliciosa 🔥</h1>
+            <p>Pedí fácil y rápido por WhatsApp</p>
+            <a href="https://wa.me/5491123456789?text=¡Hola!%20Quiero%20hacer%20un%20pedido%20🍔🔥" class="cta-button" target="_blank">
+                PEDIR POR WHATSAPP
+            </a>
+        </div>
+    </header>
+
+    <!-- Menú -->
+    <section class="menu">
+        <h2 class="section-title">🍕 Nuestro Menú</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <i class="fas fa-hamburger"></i>
+                <h3>Hamburguesa Completa</h3>
+                <p>Carne jugosa, queso derretido, vegetales frescos y salsas caseras en pan artesanal</p>
+                <div class="price">$850</div>
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-pizza-slice"></i>
+                <h3>Pizza Casera</h3>
+                <p>Masa casera crujiente con salsa de tomate natural y mozzarella fresca</p>
+                <div class="price">$950</div>
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-drumstick-bite"></i>
+                <h3>Papas Fritas</h3>
+                <p>Papas seleccionadas, fritas al momento con sal gruesa y dip casero</p>
+                <div class="price">$350</div>
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-bread-slice"></i>
+                <h3>Milanesa al Pan</h3>
+                <p>Milanesa de ternera empanada a mano con vegetales y mayonesa casera</p>
+                <div class="price">$700</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="benefits">
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>🚀 Entrega Rápida</h3>
+                <p>Tu pedido llega en menos de 30 minutos, caliente y fresco</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-home"></i>
+                <h3>🏠 Comida Casera</h3>
+                <p>Preparada con amor y recetas familiares tradicionales</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fab fa-whatsapp"></i>
+                <h3>💬 WhatsApp</h3>
+                <p>Atención personalizada 24/7 por WhatsApp</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll para animaciones
+        window.addEventListener('scroll', () => {
+            const elements = document.querySelectorAll('.menu-item, .benefit-item');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
